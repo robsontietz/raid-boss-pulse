@@ -206,10 +206,12 @@ class Alerts:
     def __init__(self, root, cfg):
         self.root = root
         self.cfg = cfg
-        # Webhook fixo fornecido
+        # Webhook do Discord configurado
         self.webhook_url = "https://discord.com/api/webhooks/1421480218304057434/Q3U1ltjbDDTEfK7Bi6FvDzNpO2NhM8t3I6euSwYsYijfeafrf6T00Nyup9_i86Wn_tiy"
 
     def sound(self):
+        # Opcional: Se quiseres manter o som de alerta no PC, deixa esta linha. 
+        # Se não quiseres nenhum som no PC, podes apagar o conteúdo desta função.
         def _play():
             if winsound:
                 for _ in range(int(self.cfg.get("beep_repeat", 3))):
@@ -221,7 +223,7 @@ class Alerts:
         threading.Thread(target=_play, daemon=True).start()
 
     def toast(self, title, msg):
-        # Substituído para enviar para o Discord via Webhook POST
+        # Envia exclusivamente para o Discord via Webhook POST
         try:
             content = f"**{title}**\n```{msg}```"
             payload = {"content": content}
@@ -230,33 +232,14 @@ class Alerts:
             print(f"Erro ao enviar para o Discord: {e}")
 
     def popup(self, title, lines):
-        win = tk.Toplevel(self.root)
-        win.title(title)
-        win.attributes("-topmost", True)
-        win.configure(bg="#2a0d0d")
-        sw = win.winfo_screenwidth()
-        win.geometry(f"460x{120 + 26 * min(len(lines), 12)}+{sw - 480}+40")
-        tk.Label(win, text="⚠ " + title, fg="#ffcc33", bg="#2a0d0d",
-                 font=("Segoe UI", 15, "bold")).pack(pady=(12, 6))
-        for ln in lines[:12]:
-            tk.Label(win, text=ln, fg="white", bg="#2a0d0d", font=("Segoe UI", 11),
-                     anchor="w", justify="left").pack(fill="x", padx=16)
-        tk.Button(win, text="OK", width=12, command=win.destroy).pack(pady=10)
-        
-        def blink(n=10):
-            if not win.winfo_exists() or n == 0:
-                return
-            win.configure(bg="#7a1010" if n % 2 else "#2a0d0d")
-            win.after(400, blink, n - 1)
-        blink()
-        win.lift()
-        win.focus_force()
+        # Vazio de propósito para NÃO abrir nenhuma janela de aviso na ecrã do PC
+        pass
 
     def fire(self, changes):
         title = f"Boss mudou de status! ({datetime.now():%H:%M:%S})"
-        self.sound()
-        self.toast(title, "\n".join(changes))
-        self.popup(title, changes)
+        self.sound() # Mantém o bip sonoro (opcional)
+        self.toast(title, "\n".join(changes)) # Envia para o Discord
+        # O popup foi desativado aqui para não saltar nenhuma janela no computador
 
 
 # ------------------------------------------------------------------ monitor
