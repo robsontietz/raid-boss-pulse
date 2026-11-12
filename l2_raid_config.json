@@ -1,0 +1,24 @@
+{
+  "list_region": [
+    823,
+    333,
+    379,
+    591
+  ],
+  "raid_button_point": [
+    1064,
+    311
+  ],
+  "use_template": true,
+  "click_interval": 30.0,
+  "check_delay": 1.5,
+  "rows": 20,
+  "threshold": 12.0,
+  "click_count": 2,
+  "click_hold": 0.08,
+  "use_ocr": false,
+  "tesseract_path": "C:\\Program Files\\Tesseract-OCR\\tesseract.exe",
+  "boss_names": "[Lv.87] Core of Chaos (Standby)\n[Lv.87] Orfen of Chaos (Standby)\n[Lv.87] Chaos Queen Ant (Standby)\n[Lv.87] Zaken of Chaos (Standby)\n[Lv.87] Gourd (Standby)\n[Lv.87] Immortal Gourd (Standby)\n[Lv.90] Kuroboros' High Priest (Standby)\n[Lv.90] Palibati Queen Themis (Standby)\n[Lv.90] Monster Bulleroth (Standby)\n[Lv.90] Evil Orc Dephracor (Standby)\n[Lv.90] Antharas (Standby)\n[Lv.90] Lilith (Standby)\n[Lv.90] Anakim (Standby)\n[Lv.90] Katuba (Standby)\n[Lv.91] Floki (Standby)\n[Lv.91] Bjorn (Standby)\n[Lv.91] Ivar (Standby)\n[Lv.91] Zahir (Standby)\n[Lv.91] Rashid (Standby)\n[Lv.91] Krusha (Standby)",
+  "restore_mouse": true,
+  "beep_repeat": 3
+}
